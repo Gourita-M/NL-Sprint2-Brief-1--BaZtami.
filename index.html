@@ -3,45 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Baztami</title>
+    <title>Baztami 💰</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
 
-  <header class="flex justify-between items-center p-4 shadow bg-white dark:bg-gray-900">
-    <h1 class="text-2xl font-bold text-green-600">Baztami 💰</h1>
-    <button id="themeToggle" class="flex p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-green-300">🌙</button>
+  <header class="rounded-2xl flex justify-between items-center p-4 shadow bg-white dark:bg-gray-900">
+    <div class="flex gap-6 items-center">
+      <img class="w-12" src="./img/logo.png" alt="Logo">
+      <h1 class="text-2xl font-bold text-green-600"> Baztami</h1>
+    </div>
+    <button id="themeToggle" class="flex p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-black">🌙</button>
   </header>
 
-  <section class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow">
-    <h2 class="text-xl font-semibold mb-4">Add Transaction</h2>
-    <form id="transactionForm" class="grid grid-cols-4 gap-4">
+  <section class="mt-2 bg-white dark:bg-gray-900 p-6 rounded-2xl shadow">
+    <div class="flex justify-between p-2">
+      <h2 class="text-xl font-semibold mb-4">Add Transaction</h2>
+      <div class="flex gap-3">
+        <button id="btn-positive" class="flex justify-center items-center shadow w-9 h-9 rounded-full hover:bg-green-300">
+          <img class="w-8" src="./img/addposi.png" alt="button to add +">
+        </button>
+        <button id="btn-negative" class="flex justify-center items-center shadow w-9 h-9 rounded-full hover:bg-red-300">
+          <img class="w-8 h-8" src="./img/addnega.png" alt="button to add +">
+        </button>
+      </div>
+    </div>
+    <form id="transactionForm" class="grid grid-cols-2 gap-3">
       <input id="input1" type="text" placeholder="Description" class="p-2 border rounded" required>
-      <input id="input2" type="number" placeholder="Amount (€)" class="p-2 border rounded" required>
-      <select class="p-2 border rounded">
-        <option value="income">Income</option>
-        <option value="expense">Expense</option>
-      </select>
-      <input id="input3" type="date" class="p-2 border rounded" required>
-      <button id="submitBtn" class="col-span-2 bg-green-600 text-white p-2 rounded hover:bg-green-700">Add</button>
+      <input id="input2" type="number" placeholder="Amount (DH)" class="p-2 border rounded" required>
     </form>
   </section>
 
-  <section>
+  <section class="mt-6">
       <h1>Transactions Details</h1>
       <div id="Card" class="grid grid-cols-4 gap-4 my-6 relative">
-          <div class="card-1 rounded-xl bg-red-200">
-            <section class="popup">
+        
+          <div class="card-1 rounded-xl bg-red-200 hover:scale-105 transition-all">
+            <div class="popup">
               <ul>
                 <li>
                   <a href="#">Edit</a>
                   <a href="#">Remove</a>
-                  <a href="#">Edit</a>
                 </li>
               </ul>
-            </section>
-            <button id="btn" class="btn" type="submit">...</button>
+            </div>
+            <button id="btn" class="btn " type="submit">...</button>
           </div>
       </div>
   </section>
@@ -49,18 +56,18 @@
   <section class="grid grid-cols-3 gap-4 my-6">
     <div class="bg-green-100 text-green-700 p-4 rounded-xl text-center">
       <h3>Total Income</h3>
-      <p id="Income" class="text-2xl font-bold">+0€</p>
+      <p id="Income" class="text-2xl font-bold"></p>
     </div>
     <div class="bg-red-100 text-red-700 p-4 rounded-xl text-center">
       <h3>Total Expenses</h3>
-      <p id="Spent" class="text-2xl font-bold">-0€</p>
+      <p id="Spent" class="text-2xl font-bold"></p>
     </div>
     <div class="relative bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 p-4 rounded-xl text-center">
       <h3>Net Balance</h3>
-      <p id="Balance" class="text-2xl font-bold">0€</p>
+      <p id="Balance" class="text-2xl font-bold"></p>
     </div>
   </section>
 
-    <script src="./script.js"></script>
+    <script src="./javascript/main.js"></script>
 </body>
 </html>
