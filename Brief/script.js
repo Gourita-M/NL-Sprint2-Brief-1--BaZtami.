@@ -3,4 +3,6 @@ document.getElementById('themeToggle').addEventListener('click', function() {
      
 });
 
-console.log('Input 1:', value1);
+
+let Spent = 2000;
+Spent = document.getElementById("Spent").innerHTML;
