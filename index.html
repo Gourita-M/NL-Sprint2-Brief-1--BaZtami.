@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- npm run dev ( to Start it the compiler )-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="./Brief/style.css" rel="stylesheet">
+    <title>Baztami</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
@@ -13,23 +13,54 @@
     <h1 class="text-2xl font-bold text-green-600">Baztami 💰</h1>
     <button id="themeToggle" class="flex p-2 bg-gray-100 dark:bg-gray-700 rounded-full hover:bg-green-300">🌙</button>
   </header>
-  <section class="grid grid-cols-3 gap-4 my-6">
-  <div class="bg-green-100 text-green-700 p-4 rounded-xl text-center">
-    <h3>Total Income</h3>
-    <p id="Income" class="text-2xl font-bold">+0€</p>
-  </div>
-  <div class="bg-red-100 text-red-700 p-4 rounded-xl text-center">
-    <h3>Total Expenses</h3>
-    <p id="Spent" class="text-2xl font-bold">-0€</p>
-  </div>
-  <div class="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 p-4 rounded-xl text-center">
-    <h3>Net Balance</h3>
-    <p id="Balance" class="text-2xl font-bold">0€</p>
-  </div>
-</section>
 
-    
-    
-    <script src="./Brief/script.js"></script>
+  <section class="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow">
+    <h2 class="text-xl font-semibold mb-4">Add Transaction</h2>
+    <form id="transactionForm" class="grid grid-cols-4 gap-4">
+      <input id="input1" type="text" placeholder="Description" class="p-2 border rounded" required>
+      <input id="input2" type="number" placeholder="Amount (€)" class="p-2 border rounded" required>
+      <select class="p-2 border rounded">
+        <option value="income">Income</option>
+        <option value="expense">Expense</option>
+      </select>
+      <input id="input3" type="date" class="p-2 border rounded" required>
+      <button id="submitBtn" class="col-span-2 bg-green-600 text-white p-2 rounded hover:bg-green-700">Add</button>
+    </form>
+  </section>
+
+  <section>
+      <h1>Transactions Details</h1>
+      <div id="Card" class="grid grid-cols-4 gap-4 my-6 relative">
+          <div class="card-1 rounded-xl bg-red-200">
+            <section class="popup">
+              <ul>
+                <li>
+                  <a href="#">Edit</a>
+                  <a href="#">Remove</a>
+                  <a href="#">Edit</a>
+                </li>
+              </ul>
+            </section>
+            <button id="btn" class="btn" type="submit">...</button>
+          </div>
+      </div>
+  </section>
+
+  <section class="grid grid-cols-3 gap-4 my-6">
+    <div class="bg-green-100 text-green-700 p-4 rounded-xl text-center">
+      <h3>Total Income</h3>
+      <p id="Income" class="text-2xl font-bold">+0€</p>
+    </div>
+    <div class="bg-red-100 text-red-700 p-4 rounded-xl text-center">
+      <h3>Total Expenses</h3>
+      <p id="Spent" class="text-2xl font-bold">-0€</p>
+    </div>
+    <div class="relative bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-100 p-4 rounded-xl text-center">
+      <h3>Net Balance</h3>
+      <p id="Balance" class="text-2xl font-bold">0€</p>
+    </div>
+  </section>
+
+    <script src="./script.js"></script>
 </body>
 </html>
