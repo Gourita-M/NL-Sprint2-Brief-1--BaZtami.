@@ -13,17 +13,32 @@ document.getElementById("Balance").innerHTML = Balance + 'DH' ;
 
 /* dyal dark mode */
 document.getElementById('themeToggle').addEventListener('click', function() {
-     document.body.style.backgroundColor = "#000000" ;
-     document.querySelector("header").style.backgroundColor = "#113045";
-     document.querySelector("section").style.backgroundColor = "#0d63a5";
-});
+    document.querySelector(".sun").style.display = "flex";
+    document.querySelector(".moon").style.display = "none";
+    document.body.style.backgroundColor = "#000000" ;
+    document.querySelector("header").style.backgroundColor = "#113045";
+    document.querySelector(".Gridd").style.backgroundColor = "#000000";
+    document.querySelector(".Tran-text").style.color = "white";
+
+}); 
+
+/* Dyal Light Mode */
+document.getElementById('themeToggle-light').addEventListener('click', function() {
+    document.querySelector(".sun").style.display = "none";
+    document.querySelector(".moon").style.display = "flex";
+    document.body.style.backgroundColor = "white" ;
+    document.querySelector("header").style.backgroundColor = "white";
+    document.querySelector("section").style.backgroundColor = "white";
+    document.querySelector(".Tran-text").style.color = "#000000";
+}); 
 
 
 /* Add/remove Button */ 
 document.getElementById("btn-positive").addEventListener('click', function() {
     let input1 = document.getElementById("input1").value;
     let input2 = document.getElementById("input2").value;
-    
+    let currentTime = new Date();
+   
     if (input1.trim() === '' || input2.trim() === '') {
         alert("You Can't Submit it Empty");
         return;
@@ -39,7 +54,7 @@ document.getElementById("btn-positive").addEventListener('click', function() {
     
     const myDiv = document.getElementById('Card');
     const newDiv = document.createElement('div');
-    newDiv.className = 'h-40 shadow rounded-xl bg-green-200 hover:scale-105 transition-all';
+    newDiv.className = 'h-40 shadow rounded-xl bg-green-100 hover:scale-105 transition-all';
     newDiv.innerHTML = `
     <div class="flex justify-around gap-2">
       <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
@@ -55,8 +70,9 @@ document.getElementById("btn-positive").addEventListener('click', function() {
       </button>
     </div>
     <div class="flex flex-col items-c gap-1 text-center h-32">
-      <h3 class="text-lg">+${number}DH</h3>
+      <h3 class="text-lg text-green-700">+${number}DH</h3>
       <p class="text-xs">${input1}</p>
+      <p class="text-xs">${currentTime}</p>
     </div>`;
 
     myDiv.appendChild(newDiv);
@@ -74,6 +90,11 @@ document.getElementById("btn-positive").addEventListener('click', function() {
 document.getElementById("btn-negative").addEventListener('click', function() {
      let input1 = document.getElementById("input1").value;
      let input2 = document.getElementById("input2").value;
+     let currentTime = new Date();
+     let Numberof = 0 ;
+     
+
+     Numberof++
      
      if (input1.trim() === '' || input2.trim() === '') {
         alert("You Can't Submit it Empty");
@@ -87,9 +108,10 @@ document.getElementById("btn-negative").addEventListener('click', function() {
      Balance = Income - Spent ;
      document.getElementById("Balance").innerHTML = Balance + 'DH' ;
 
-     const myDiv = document.getElementById('Card');
+
+    const myDiv = document.getElementById('Card');
     const newDiv = document.createElement('div');
-    newDiv.className = 'h-40 shadow rounded-xl bg-red-200 hover:scale-105 transition-all';
+    newDiv.className = ' h-40 shadow rounded-xl bg-red-100 hover:scale-105 transition-all';
     newDiv.innerHTML = `
     <div class="flex justify-around gap-2">
       <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
@@ -105,10 +127,11 @@ document.getElementById("btn-negative").addEventListener('click', function() {
       </button>
     </div>
     <div class="flex flex-col items-c gap-1 text-center h-32">
-      <h3 class="text-lg">-${number}DH</h3>
+      <h3 class="text-lg text-red-700">-${number}DH</h3>
       <p class="text-xs">${input1}</p>
+      <p class="text-xs">${currentTime}</p>
     </div>`;
-
+   
     myDiv.appendChild(newDiv);
 
     document.getElementById("input1").value = '';
@@ -120,35 +143,3 @@ document.getElementById("btn-negative").addEventListener('click', function() {
   });
 });
 
-let a = '10'
-let b = a + 2 * 2
-
-result = a * b
-console.log(b)
-
-/*   i'll work on this later
-
-const myDiv = document.getElementById('Card');
-
-const newDiv = document.createElement('div');
-newDiv.className = 'card-2 rounded-xl bg-red-200';
-newDiv.innerHTML = `
-  <section class="popup">
-    <ul>
-      <li>
-        <a href="#">Edit</a>
-        <a href="#">Remove</a>
-        <a href="#">Edit</a>
-      </li>
-    </ul>
-  </section>
-  <button class="btn2" type="submit">...</button>
-`;
-document.getElementById("btn2").addEventListener("click", function(){
-
-      document.querySelector(".popup").style.display = "block";
-
-});
-
-myDiv.appendChild(newDiv); // adds it without deleting existing content
-*/
