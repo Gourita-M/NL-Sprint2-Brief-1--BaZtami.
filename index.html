@@ -38,7 +38,7 @@
   <section class="mt-6">
       <h1>Transactions Details</h1>
       <div id="Card" class="grid grid-cols-4 gap-4 my-6 relative">
-        <!--
+      <!--
           <div class="h-40 shadow rounded-xl bg-green-200 hover:scale-105 transition-all">
             <div class="flex justify-around gap-2">
               <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
@@ -52,14 +52,14 @@
               <button id="btn" class=" text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
                 <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
               </button>
-            </div>>
+            </div>
               
             
-            <div class="card-content flex flex-col">
-              <h3>${input1}</h3>
-              <p>+${number} DH</p>
-            </div>`;
-            -->
+            <div class="flex flex-col items-c gap-1 text-center h-32">
+              <h3 class="text-lg">${input1}</h3>
+              <p class="text-xs">+${number} DH</p>
+            </div>
+          -->
           </div>
       </div>
   </section>
@@ -67,7 +67,7 @@
   <section class="grid grid-cols-3 gap-4 my-6">
     <div class="bg-green-100 text-green-700 p-4 rounded-xl text-center">
       <h3>Total Income</h3>
-      <p id="Income" class="text-2xl font-bold"></p>
+      <p id="Income" class="text-2xl font-bold truncate"></p>
     </div>
     <div class="bg-red-100 text-red-700 p-4 rounded-xl text-center">
       <h3>Total Expenses</h3>

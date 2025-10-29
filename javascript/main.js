@@ -53,6 +53,10 @@ document.getElementById("btn-positive").addEventListener('click', function() {
       <button id="btn" class=" text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
         <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
       </button>
+    </div>
+    <div class="flex flex-col items-c gap-1 text-center h-32">
+      <h3 class="text-lg">+${number}DH</h3>
+      <p class="text-xs">${input1}</p>
     </div>`;
 
     myDiv.appendChild(newDiv);
@@ -82,8 +86,45 @@ document.getElementById("btn-negative").addEventListener('click', function() {
      document.getElementById("Spent").innerHTML = '-' + Spent + 'DH' ;
      Balance = Income - Spent ;
      document.getElementById("Balance").innerHTML = Balance + 'DH' ;
+
+     const myDiv = document.getElementById('Card');
+    const newDiv = document.createElement('div');
+    newDiv.className = 'h-40 shadow rounded-xl bg-red-200 hover:scale-105 transition-all';
+    newDiv.innerHTML = `
+    <div class="flex justify-around gap-2">
+      <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
+        <ul>
+          <li class="flex gap-4 text-xs m-2">
+            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Edit</a>
+            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Remove</a>
+          </li>
+        </ul>
+      </div>
+      <button id="btn" class=" text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
+        <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
+      </button>
+    </div>
+    <div class="flex flex-col items-c gap-1 text-center h-32">
+      <h3 class="text-lg">-${number}DH</h3>
+      <p class="text-xs">${input1}</p>
+    </div>`;
+
+    myDiv.appendChild(newDiv);
+
+    document.getElementById("input1").value = '';
+    document.getElementById("input2").value = '';
+
+    document.getElementById("btn").addEventListener("click", function(){
+
+         document.querySelector(".Card-menu").style.display = "flex";
+  });
 });
 
+let a = '10'
+let b = a + 2 * 2
+
+result = a * b
+console.log(b)
 
 /*   i'll work on this later
 
