@@ -18,3 +18,18 @@
         
     }
 }
+
+
+<div class="Gridd max-[600px]:grid max-[600px]:[grid-template-columns:repeat(auto-fit,minmax(200px,1fr))]">
+  ...
+</div>
+
+<div class="flex max-[600px]:justify-around">
+  ...
+</div>
+
+<div class="Gridd2 max-[600px]:flex max-[600px]:flex-col">
+  <form class="max-[600px]:flex max-[600px]:flex-col">
+    ...
+  </form>
+</div>

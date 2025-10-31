@@ -27,7 +27,7 @@ document.getElementById('themeToggle-light').addEventListener('click', function(
     document.querySelector(".sun").style.display = "none";
     document.querySelector(".moon").style.display = "flex";
     document.body.style.backgroundColor = "white" ;
-    document.querySelector("header").style.backgroundColor = "white";
+    document.querySelector("header").style.backgroundColor = "";
     document.querySelector("section").style.backgroundColor = "white";
     document.querySelector(".Tran-text").style.color = "#000000";
 }); 
@@ -38,23 +38,21 @@ let btnidnumber1 = 0 ;
 /* Add/remove Button */ 
 
 // --- dyal Income ---
-document.getElementById("btn-positive").addEventListener('click', function() {
+document.getElementById("btn-positive").addEventListener('click', function () {
   let input1 = document.getElementById("input1").value.trim();
   let input2 = document.getElementById("input2").value.trim();
   let currentTime = new Date();
 
   if (input1 === '' || input2 === '') {
-    alert("You Can't Submit it Empty");
+    alert("You can't submit it empty");
     return;
   }
 
   let number = parseInt(input2);
-
   Income += number;
   document.getElementById("Income").innerHTML = '+' + Income + 'DH';
   Balance = Income - Spent;
   document.getElementById("Balance").innerHTML = Balance + 'DH';
-
   btnidnumber++;
 
   const myDiv = document.getElementById('Card');
@@ -65,8 +63,8 @@ document.getElementById("btn-positive").addEventListener('click', function() {
       <div class="Card-menu-${btnidnumber} hidden justify-center items-center rounded-xl h-5 w-30">
         <ul>
           <li class="flex gap-4 text-xs m-2">
-            <button id="editbtn" class="hover:text-red-400"> Edit </button>
-            <button class="hover:text-red-400"> Remove </button>
+            <button id="editbtn-${btnidnumber}" class="hover:text-red-400">Edit</button>
+            <button id="removebn" class="hover:text-red-400">Remove</button>
           </li>
         </ul>
       </div>
@@ -77,66 +75,113 @@ document.getElementById("btn-positive").addEventListener('click', function() {
         <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
       </button>
     </div>
-    <div class="flex flex-col items-center gap-1 text-center h-32">
-      <h3 class="text-lg text-green-700">+${number}DH</h3>
-      <p class="text-xs">${input1}</p>
+    <div class="flex flex-col items-center gap-5 text-center justify-between h-32">
+      <h3 id="valuu" class="text-lg text-green-700">+${number}DH</h3>
+      <p id="valuu1" class="text-xs">${input1}</p>
       <p class="text-xs">${currentTime.toLocaleString()}</p>
     </div>`;
 
   myDiv.appendChild(newDiv);
+
   document.getElementById("input1").value = '';
   document.getElementById("input2").value = '';
 
+  // Open/Close menu
   const btnOpen = document.getElementById("btn--" + btnidnumber);
   const btnClose = document.getElementById("btn-" + btnidnumber);
   const cardMenu = document.querySelector(".Card-menu-" + btnidnumber);
-  const editbtn = document.getElementById("editbtn");
-  const editcontainer = document.getElementById("editcontainer");
-  const editclose = document.getElementById('editclose');
 
-  btnOpen.addEventListener("click", function() {
+  btnOpen.addEventListener("click", () => {
     btnOpen.style.display = "none";
     btnClose.style.display = "flex";
     cardMenu.style.display = "flex";
   });
 
-  btnClose.addEventListener("click", function() {
+  btnClose.addEventListener("click", () => {
     btnClose.style.display = "none";
     btnOpen.style.display = "flex";
     cardMenu.style.display = "none";
   });
 
-// function inside another
-        document.getElementById('editbtn').addEventListener('click', function(){
+  // Edit window
+  const editbtn = document.getElementById(`editbtn-${btnidnumber}`);
+  const editcontainer = document.getElementById("editcontainer");
 
-        const cardMenu = document.querySelector(".Card-menu-" + btnidnumber);
-        
-        cardMenu.style.display = 'none'
+  editbtn.addEventListener("click", function () {
+    cardMenu.style.display = 'none';
 
-        const editbtn = document.getElementById("editbtn");
-        const editcontainer = document.getElementById("editcontainer");
+    editcontainer.innerHTML = '';
 
-        const mydiv = document.getElementById('editcontainer');
-        const newdiv = document.createElement('div');
-          newdiv.className = 'relative bg-blue-100 w-64 h-60 text-center rounded-xl flex items-center justify-around flex-col gap-5'
-          newdiv.innerHTML = `<h1> Edit Your Transaction </h1>
-            <input  type="text" placeholder="Description" class="p-2 border rounded" required>
-            <input  type="number" placeholder="Amount (DH)" class="p-2 border rounded" required>
-            <button  class="bg-green-300 w-16 rounded-xl"> Edit </button>
-          <button id="editclose" class="absolute right-44 bg-red-200 w-6 rounded-full top-1">X</button>`;
-        mydiv.appendChild(newdiv);
+    const newdiv = document.createElement('div');
+    newdiv.className = 'relative bg-blue-50 w-64 h-60 text-center rounded-xl flex items-center justify-around flex-col gap-5';
+    newdiv.innerHTML = `
+      <h1>Edit Your Transaction</h1>
+      <input id="newvalu1" type="text" value="${input1}" placeholder="Description" class="p-2 border rounded" required>
+      <input id="newvalu2" type="number" value="${number}" placeholder="Amount (DH)" class="p-2 border rounded" required>
+      <button id="editbttn" class="hover:text-red-700 bg-green-300 w-16 rounded-xl">Edit</button>
+      <button id="editclose" class="absolute hover:text-red-700 right-3 bg-red-200 w-6 rounded-full top-1">X</button>
+    `;
+    editcontainer.appendChild(newdiv);
 
-        const editclose = document.getElementById('editclose');
-        
-            editclose.addEventListener('click', function(){
-                    editcontainer.style.display = "none";
+    editcontainer.style.display = "flex";
 
-            })
-            
-      })
+    const editclose = document.getElementById('editclose');
+    editclose.addEventListener('click', function () {
+      editcontainer.style.display = "none";
+    });
+
+    document.getElementById("editbttn").addEventListener('click', function(){
+       let nextvalu = document.getElementById("newvalu1").value;
+       let newdescripting = document.getElementById("newvalu2").value;
+
+       const editclose = document.getElementById('editclose');
+
+       editcontainer.style.display = 'none'
+
+       input1 = nextvalu ;
+       number = newdescripting ;
+
+       document.getElementById("valuu1").innerHTML = nextvalu;
+       document.getElementById("valuu").innerHTML = '+' + newdescripting +'DH';
+
+    });
+  });
+
+  // remove btn
+  
+    let removebtn = document.getElementById('removebn')
+
+    removebtn.addEventListener('click', function(){
+       
+      let removecontainer = document.getElementById('removecontainer')
+
+      removecontainer.style.display = 'flex'
+
       
-});
+    })
 
+    let removeclose = document.getElementById('removeclose')
+
+    removeclose.addEventListener('click', function(){
+
+      let removecontainer = document.getElementById('removecontainer')
+
+      removecontainer.style.display = 'none'
+
+    })
+
+    let yesbttn = document.getElementById('yesbttn').addEventListener('click', function(){
+   
+   
+       })
+
+    let nobttn = document.getElementById('nobttn').addEventListener('click', function(){
+
+          let removecontainer = document.getElementById('removecontainer')
+
+                     removecontainer.style.display = 'none'
+       })
+});
 
 
 
@@ -206,6 +251,8 @@ document.getElementById("btn-negative").addEventListener('click', function() {
     btnOpen.style.display = "flex";
     cardMenu.style.display = "none";
   });
+
+  
 });
 
 // edit o delete Button
@@ -239,5 +286,3 @@ document.getElementById('btn-positive').addEventListener('mouseout', function(){
 })
 
 // Edit function 
-
-
