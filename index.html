@@ -36,9 +36,15 @@
       <p id="Balance" class="text-2xl font-bold"></p>
     </div>
   </section>
+
+  <section id="editcontainer" class="flex absolute z-10 m-5 justify-center w-10/12">
+    
+  </section>
   
-  <section class="Gridd2 mt-2 bg-white dark:bg-gray-900 p-6 rounded-2xl shadow">
-    <div class="flex justify-between p-2">
+  <section class="Gridd2 mt-2 bg-white dark:bg-gray-900 p-6 rounded-2xl shadow relative">
+    <h1 id="inco" class="hidden absolute right-24 text-center">Add Income</h1>
+    <h1 id="expe" class="hidden absolute right-8  text-center">Add Expenses</h1>
+    <div class="flex justify-between p-2 m-8">
       <h2 class="item1 text-xl font-semibold mb-4">Add Transaction</h2>
       <div class="flex gap-3">
         <button id="btn-positive" class="item2 flex justify-center items-center shadow w-9 h-9 rounded-full hover:bg-green-300">
@@ -58,14 +64,17 @@
   <section class="mt-6">
       <h1 class="Tran-text text-center text-lg font-semibold">Transactions Details</h1>
       <div id="Card" class="grid grid-cols-4 gap-2 my-2 relative shadow">
-      <!--
+      
+
+      
+        <!--
           <div class="h-40 w-48 shadow rounded-xl bg-green-200 hover:scale-105 transition-all">
             <div class="flex justify-around gap-2">
-              <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
+              <div class="Card-menu justify-center items-center rounded-xl h-5 w-30">
                 <ul>
                   <li class="flex gap-4 text-xs m-2">
-                    <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Edit</a>
-                    <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Remove</a>
+                    <button class="hover:text-red-400"> Edit </button>
+                    <button class="hover:text-red-400"> Remove </button>
                   </li>
                 </ul>
               </div>
@@ -79,7 +88,7 @@
               <h3 class="text-lg">${input1}</h3>
               <p class="text-xs">+${number} DH</p>
             </div>
-          -->
+      --> 
           </div>
       </div>
   </section>

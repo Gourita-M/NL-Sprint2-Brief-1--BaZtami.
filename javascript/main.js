@@ -32,114 +32,212 @@ document.getElementById('themeToggle-light').addEventListener('click', function(
     document.querySelector(".Tran-text").style.color = "#000000";
 }); 
 
+let btnidnumber = 0 ;
+let btnidnumber1 = 0 ;
 
 /* Add/remove Button */ 
+
+// --- dyal Income ---
 document.getElementById("btn-positive").addEventListener('click', function() {
-    let input1 = document.getElementById("input1").value;
-    let input2 = document.getElementById("input2").value;
-    let currentTime = new Date();
-   
-    if (input1.trim() === '' || input2.trim() === '') {
-        alert("You Can't Submit it Empty");
-        return;
-    }
+  let input1 = document.getElementById("input1").value.trim();
+  let input2 = document.getElementById("input2").value.trim();
+  let currentTime = new Date();
 
-    console.log(input1)
-    let number = parseInt(input2);
+  if (input1 === '' || input2 === '') {
+    alert("You Can't Submit it Empty");
+    return;
+  }
 
-    Income = Income + number ;
-    document.getElementById("Income").innerHTML = '+' + Income + 'DH' ;
-    Balance = Income - Spent ;
-    document.getElementById("Balance").innerHTML = Balance + 'DH' ;
-    
-    const myDiv = document.getElementById('Card');
-    const newDiv = document.createElement('div');
-    newDiv.className = 'h-40 shadow rounded-xl bg-green-100 hover:scale-105 transition-all';
-    newDiv.innerHTML = `
+  let number = parseInt(input2);
+
+  Income += number;
+  document.getElementById("Income").innerHTML = '+' + Income + 'DH';
+  Balance = Income - Spent;
+  document.getElementById("Balance").innerHTML = Balance + 'DH';
+
+  btnidnumber++;
+
+  const myDiv = document.getElementById('Card');
+  const newDiv = document.createElement('div');
+  newDiv.className = 'h-40 shadow rounded-xl bg-green-100 hover:scale-105 transition-all';
+  newDiv.innerHTML = `
     <div class="flex justify-around gap-2">
-      <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
+      <div class="Card-menu-${btnidnumber} hidden justify-center items-center rounded-xl h-5 w-30">
         <ul>
           <li class="flex gap-4 text-xs m-2">
-            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Edit</a>
-            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Remove</a>
+            <button id="editbtn" class="hover:text-red-400"> Edit </button>
+            <button class="hover:text-red-400"> Remove </button>
           </li>
         </ul>
       </div>
-      <button id="btn" class=" text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
+      <button id="btn--${btnidnumber}" class="text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
+        <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
+      </button>
+      <button id="btn-${btnidnumber}" class="hidden text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
         <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
       </button>
     </div>
-    <div class="flex flex-col items-c gap-1 text-center h-32">
+    <div class="flex flex-col items-center gap-1 text-center h-32">
       <h3 class="text-lg text-green-700">+${number}DH</h3>
       <p class="text-xs">${input1}</p>
-      <p class="text-xs">${currentTime}</p>
+      <p class="text-xs">${currentTime.toLocaleString()}</p>
     </div>`;
 
-    myDiv.appendChild(newDiv);
+  myDiv.appendChild(newDiv);
+  document.getElementById("input1").value = '';
+  document.getElementById("input2").value = '';
 
-    document.getElementById("input1").value = '';
-    document.getElementById("input2").value = '';
+  const btnOpen = document.getElementById("btn--" + btnidnumber);
+  const btnClose = document.getElementById("btn-" + btnidnumber);
+  const cardMenu = document.querySelector(".Card-menu-" + btnidnumber);
+  const editbtn = document.getElementById("editbtn");
+  const editcontainer = document.getElementById("editcontainer");
+  const editclose = document.getElementById('editclose');
 
-    document.getElementById("btn").addEventListener("click", function(){
-
-         document.querySelector(".Card-menu").style.display = "flex";
+  btnOpen.addEventListener("click", function() {
+    btnOpen.style.display = "none";
+    btnClose.style.display = "flex";
+    cardMenu.style.display = "flex";
   });
 
+  btnClose.addEventListener("click", function() {
+    btnClose.style.display = "none";
+    btnOpen.style.display = "flex";
+    cardMenu.style.display = "none";
+  });
+
+// function inside another
+        document.getElementById('editbtn').addEventListener('click', function(){
+
+        const cardMenu = document.querySelector(".Card-menu-" + btnidnumber);
+        
+        cardMenu.style.display = 'none'
+
+        const editbtn = document.getElementById("editbtn");
+        const editcontainer = document.getElementById("editcontainer");
+
+        const mydiv = document.getElementById('editcontainer');
+        const newdiv = document.createElement('div');
+          newdiv.className = 'relative bg-blue-100 w-64 h-60 text-center rounded-xl flex items-center justify-around flex-col gap-5'
+          newdiv.innerHTML = `<h1> Edit Your Transaction </h1>
+            <input  type="text" placeholder="Description" class="p-2 border rounded" required>
+            <input  type="number" placeholder="Amount (DH)" class="p-2 border rounded" required>
+            <button  class="bg-green-300 w-16 rounded-xl"> Edit </button>
+          <button id="editclose" class="absolute right-44 bg-red-200 w-6 rounded-full top-1">X</button>`;
+        mydiv.appendChild(newdiv);
+
+        const editclose = document.getElementById('editclose');
+        
+            editclose.addEventListener('click', function(){
+                    editcontainer.style.display = "none";
+
+            })
+            
+      })
+      
 });
 
+
+
+
+
+// dyal Expence 
 document.getElementById("btn-negative").addEventListener('click', function() {
-     let input1 = document.getElementById("input1").value;
-     let input2 = document.getElementById("input2").value;
-     let currentTime = new Date();
-     let Numberof = 0 ;
-     
+  let input1 = document.getElementById("input1").value.trim();
+  let input2 = document.getElementById("input2").value.trim();
+  let currentTime = new Date();
 
-     Numberof++
-     
-     if (input1.trim() === '' || input2.trim() === '') {
-        alert("You Can't Submit it Empty");
-        return;
-    }
+  if (input1 === '' || input2 === '') {
+    alert("You Can't Submit it Empty");
+    return;
+  }
 
-     let number = parseInt(input2);
+  let number = parseInt(input2);
 
-     Spent = Spent + number ;
-     document.getElementById("Spent").innerHTML = '-' + Spent + 'DH' ;
-     Balance = Income - Spent ;
-     document.getElementById("Balance").innerHTML = Balance + 'DH' ;
+  Spent += number;
+  document.getElementById("Spent").innerHTML = '-' + Spent + 'DH';
+  Balance = Income - Spent;
+  document.getElementById("Balance").innerHTML = Balance + 'DH';
 
+  btnidnumber1++;
 
-    const myDiv = document.getElementById('Card');
-    const newDiv = document.createElement('div');
-    newDiv.className = ' h-40 shadow rounded-xl bg-red-100 hover:scale-105 transition-all';
-    newDiv.innerHTML = `
+  const myDiv = document.getElementById('Card');
+  const newDiv = document.createElement('div');
+  newDiv.className = 'h-40 shadow rounded-xl bg-red-100 hover:scale-105 transition-all';
+  newDiv.innerHTML = `
     <div class="flex justify-around gap-2">
-      <div class="Card-menu hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
+      <div class="Card-menu-${btnidnumber1} hidden justify-center items-center bg-green-500 rounded-xl h-5 w-30">
         <ul>
           <li class="flex gap-4 text-xs m-2">
-            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Edit</a>
-            <a class="hover:text-red-700 hover:scale-105 transition-all" href="#">Remove</a>
+            <button> Edit </button>
+            <button> Remove </button>
           </li>
         </ul>
       </div>
-      <button id="btn" class=" text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
+      <button id="btn--${btnidnumber1}" class="text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
+        <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
+      </button>
+      <button id="btn-${btnidnumber1}" class="hidden text-lg hover:text-red-700 hover:scale-150 transition-all" type="submit">
         <img class="w-6" src="./img/menu.png" alt="3 dots for menu">
       </button>
     </div>
-    <div class="flex flex-col items-c gap-1 text-center h-32">
+    <div class="flex flex-col items-center gap-1 text-center h-32">
       <h3 class="text-lg text-red-700">-${number}DH</h3>
       <p class="text-xs">${input1}</p>
-      <p class="text-xs">${currentTime}</p>
+      <p class="text-xs">${currentTime.toLocaleString()}</p>
     </div>`;
-   
-    myDiv.appendChild(newDiv);
 
-    document.getElementById("input1").value = '';
-    document.getElementById("input2").value = '';
+  myDiv.appendChild(newDiv);
+  document.getElementById("input1").value = '';
+  document.getElementById("input2").value = '';
 
-    document.getElementById("btn").addEventListener("click", function(){
+  const btnOpen = document.getElementById("btn--" + btnidnumber1);
+  const btnClose = document.getElementById("btn-" + btnidnumber1);
+  const cardMenu = document.querySelector(".Card-menu-" + btnidnumber1);
 
-         document.querySelector(".Card-menu").style.display = "flex";
+  btnOpen.addEventListener("click", function() {
+    btnOpen.style.display = "none";
+    btnClose.style.display = "flex";
+    cardMenu.style.display = "flex";
+  });
+
+  btnClose.addEventListener("click", function() {
+    btnClose.style.display = "none";
+    btnOpen.style.display = "flex";
+    cardMenu.style.display = "none";
   });
 });
+
+// edit o delete Button
+
+
+
+
+// for the add button info expense
+
+document.getElementById('btn-negative').addEventListener('mouseover', function(){
+
+         document.querySelector('#expe').style.display = 'flex'
+})
+
+document.getElementById('btn-negative').addEventListener('mouseout', function(){
+
+         document.querySelector('#expe').style.display = 'none'
+})
+
+
+// for add button info 2 income
+
+document.getElementById('btn-positive').addEventListener('mouseover', function(){
+
+         document.querySelector('#inco').style.display = 'flex'
+})
+
+document.getElementById('btn-positive').addEventListener('mouseout', function(){
+
+         document.querySelector('#inco').style.display = 'none'
+})
+
+// Edit function 
+
 

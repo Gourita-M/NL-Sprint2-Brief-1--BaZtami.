@@ -9,12 +9,12 @@
         justify-content: space-around;
     }
     .Gridd2{
-        background-color: rgb(31, 225, 37);
         display: flex;
         flex-direction: column;
     }
     .Gridd2 form{
         display: flex;
         flex-direction: column;
+        
     }
 }
