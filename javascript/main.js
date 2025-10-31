@@ -57,7 +57,7 @@ document.getElementById("btn-positive").addEventListener('click', function () {
   newDiv.innerHTML = `
     <div class="flex justify-between items-center">
       <button id="menu-open-${incomeId}" class="hover:scale-125"><img src="./img/menu.png" class="w-6"></button>
-      <div id="menu-${incomeId}" class="hidden flex gap-2 text-xs">
+      <div id="menu-${incomeId}" class="hidden gap-2 text-xs">
         <button id="edit-${incomeId}" class="text-blue-500 hover:underline">Edit</button>
         <button id="remove-${incomeId}" class="text-red-500 hover:underline">Remove</button>
       </div>
@@ -71,31 +71,31 @@ document.getElementById("btn-positive").addEventListener('click', function () {
 
   myDiv.appendChild(newDiv);
 
-  // Reset form
+  // Reset
   document.getElementById("input1").value = '';
   document.getElementById("input2").value = '';
 
-  // --- MENU HANDLERS ---
+  
   const menuOpen = document.getElementById(`menu-open-${incomeId}`);
   const menu = document.getElementById(`menu-${incomeId}`);
   menuOpen.addEventListener("click", () => {
     menu.classList.toggle("hidden");
   });
 
-  // --- EDIT HANDLER ---
+  // edit
   document.getElementById(`edit-${incomeId}`).addEventListener("click", function () {
     openEditModal(newDiv, input1, number, "income");
     menu.classList.add("hidden");
   });
 
-  // --- REMOVE HANDLER ---
+  // remove
   document.getElementById(`remove-${incomeId}`).addEventListener("click", function () {
     openRemoveModal(newDiv, "income");
     menu.classList.add("hidden");
   });
 });
 
-/* ------------------- ADD EXPENSE ------------------- */
+// add dyal expans
 document.getElementById("btn-negative").addEventListener('click', function () {
   const input1 = document.getElementById("input1").value.trim();
   const input2 = document.getElementById("input2").value.trim();
@@ -122,12 +122,12 @@ document.getElementById("btn-negative").addEventListener('click', function () {
   newDiv.innerHTML = `
     <div class="flex justify-between items-center">
       <button id="menu-open-exp-${expenseId}" class="hover:scale-125"><img src="./img/menu.png" class="w-6"></button>
-      <div id="menu-exp-${expenseId}" class="hidden flex gap-2 text-xs">
+      <div id="menu-exp-${expenseId}" class="hidden gap-2 text-xs">
         <button id="edit-exp-${expenseId}" class="text-blue-500 hover:underline">Edit</button>
         <button id="remove-exp-${expenseId}" class="text-red-500 hover:underline">Remove</button>
       </div>
     </div>
-    <div class="text-center">
+    <div class="text-center flex flex-colm">
       <h3 id="amount-exp-${expenseId}" class="text-red-700 font-bold text-lg">-${number}DH</h3>
       <p id="desc-exp-${expenseId}" class="text-xs">${input1}</p>
       <p class="text-xs text-gray-500">${currentTime.toLocaleString()}</p>
@@ -136,39 +136,39 @@ document.getElementById("btn-negative").addEventListener('click', function () {
 
   myDiv.appendChild(newDiv);
 
-  // Reset form
+  // reset l inputs
   document.getElementById("input1").value = '';
   document.getElementById("input2").value = '';
 
-  // --- MENU HANDLERS ---
+  // menu
   const menuOpen = document.getElementById(`menu-open-exp-${expenseId}`);
   const menu = document.getElementById(`menu-exp-${expenseId}`);
   menuOpen.addEventListener("click", () => {
     menu.classList.toggle("hidden");
   });
 
-  // --- EDIT HANDLER ---
+  // editt +
   document.getElementById(`edit-exp-${expenseId}`).addEventListener("click", function () {
     openEditModal(newDiv, input1, number, "expense");
     menu.classList.add("hidden");
   });
 
-  // --- REMOVE HANDLER ---
+  // remove -
   document.getElementById(`remove-exp-${expenseId}`).addEventListener("click", function () {
     openRemoveModal(newDiv, "expense");
     menu.classList.add("hidden");
   });
 });
 
-/* ------------------- EDIT MODAL ------------------- */
+// edit -
 function openEditModal(card, oldDesc, oldAmount, type) {
   const editcontainer = document.getElementById("editcontainer");
   editcontainer.innerHTML = `
-    <div class="relative bg-blue-50 w-64 h-60 text-center rounded-xl flex items-center justify-around flex-col gap-5">
+    <div class="relative bg-blue-200 w-64 h-60 text-center rounded-xl flex items-center justify-around flex-col gap-5">
       <h1>Edit Your Transaction</h1>
       <input id="newvalu1" type="text" value="${oldDesc}" placeholder="Description" class="p-2 border rounded">
       <input id="newvalu2" type="number" value="${oldAmount}" placeholder="Amount (DH)" class="p-2 border rounded">
-      <button id="editbttn" class="hover:text-red-700 bg-green-300 w-16 rounded-xl">Save</button>
+      <button id="editbttn" class="hover:scale-105 hover:text-red-700 bg-green-100 w-16 rounded-xl">Save</button>
       <button id="editclose" class="absolute hover:text-red-700 right-3 bg-red-200 w-6 rounded-full top-1">X</button>
     </div>
   `;
@@ -204,7 +204,7 @@ function openEditModal(card, oldDesc, oldAmount, type) {
   });
 }
 
-/* ------------------- REMOVE MODAL ------------------- */
+// remove -
 function openRemoveModal(card, type) {
   const removecontainer = document.getElementById('removecontainer');
   removecontainer.style.display = 'flex';
@@ -231,7 +231,7 @@ function openRemoveModal(card, type) {
   };
 }
 
-/* ------------------- BUTTON HINTS ------------------- */
+// button
 document.getElementById('btn-negative').addEventListener('mouseover', function () {
   document.querySelector('#expe').style.display = 'flex';
 });
