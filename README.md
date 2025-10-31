@@ -77,7 +77,7 @@ Installation
 
 Clone the repository:
 
-git clone https://github.com/your-username/baztami.git
+git clone https://github.com/Gourita-M/NL-Sprint2-Brief-1--BaZtami..git
 
 
 Open index.html in your browser.
